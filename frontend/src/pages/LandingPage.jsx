@@ -6,111 +6,135 @@ import Login from './Auth/Login';
 import SignUp from './Auth/SignUp';
 import Modal from '../components/ResumeTemplates/Modal';
 
+const FeatureCard = ({ title, description, icon }) => (
+  <div className="bg-white border border-gray-200 p-6 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 text-center">
+    <div className="text-5xl mb-4">{icon}</div>
+    <h3 className="text-xl font-semibold mb-2 text-gray-900">{title}</h3>
+    <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+  </div>
+);
+
 const LandingPage = () => {
   const navigate = useNavigate();
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authPage, setAuthPage] = useState('login');
 
-  const [openAuthModal, setOpenAuthModal] = useState(false);
-  const [currentPage, setCurrentPage] = useState("login");
-
-  const handleCTA = () => {
-    setOpenAuthModal(true); // Open modal on Get Started too
+  const openModal = () => setAuthModalOpen(true);
+  const closeModal = () => {
+    setAuthModalOpen(false);
+    setAuthPage('login');
   };
 
   return (
-    <>
-      <div className='w-full min-h-full bg-white'>
-        <div className="container mx-auto px-4 py-6">
-          {/* Header */}
-          <header className="flex justify-between items-center mb-16">
-            <div className="text-xl font-bold">RESUMATCH</div>
+    <div className="w-full min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100 font-sans">
+      <div className="container mx-auto px-4 py-12">
+
+        {/* Header */}
+        <header className="flex justify-between items-center mb-16">
+          <div className="text-2xl font-bold text-gray-900 tracking-wide">🚀 RESUMATCH</div>
+          <button
+            className="bg-gray-900 text-white text-sm font-semibold px-6 py-2 rounded-lg hover:bg-gray-700 transition duration-300"
+            onClick={openModal}
+            aria-label="Login or Sign Up"
+          >
+            Login / Sign Up
+          </button>
+        </header>
+
+        {/* Hero Section */}
+        <main className="flex flex-col md:flex-row items-center gap-14">
+          <div className="w-full md:w-1/2">
+            <h1 className="text-5xl font-extrabold leading-snug text-gray-900 mb-6">
+              Create standout resumes <br />
+              <span className="text-transparent bg-clip-text bg-[radial-gradient(circle,#7182ff_0%,#3cff52_100%)] bg-[length:200%_200%] animate-text-shine">
+                effortlessly and instantly
+              </span>
+            </h1>
+            <p className="text-lg text-gray-700 mb-8 max-w-md">
+              Build a powerful resume in minutes with RESUMATCH — your smart and intuitive resume builder.
+            </p>
             <button
-              className="bg-purple-100 text-sm font-semibold text-black px-7 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors cursor-pointer"
-              onClick={() => setOpenAuthModal(true)}
+              className="bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold px-8 py-3 rounded-xl shadow-lg transition-all"
+              onClick={openModal}
             >
-              Login / Sign Up
+              Start Building
             </button>
-          </header>
-
-          {/* Hero Content */}
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="w-full md:w-1/2 pr-4 mb-8 md:mb-0">
-              <h1 className="text-5xl font-bold mb-6 leading-tight">
-                Build Your{" "}
-                <span className="text-transparent bg-clip-text bg-[radial-gradient(circle,_#7182ff_0%,_#3cff52_100%)] bg-[length:200%_200%] animate-text-shine">
-                  Resume Effortlessly
-                </span>
-              </h1>
-              <p className="text-lg text-gray-700 mb-8">
-                Craft a standout resume in minutes with our smart and intuitive RESUMATCH
-              </p>
-              <button
-                className="bg-black text-sm font-semibold text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors cursor-pointer"
-                onClick={handleCTA}
-              >
-                Get Started
-              </button>
-            </div>
-
-            <div className="w-full md:w-1/2">
-              <img
-                src={CUSTOM_IMG}
-                alt="Custom"
-                className="w-full rounded-lg"
-              />
-            </div>
           </div>
 
-          {/* Features Section */}
-          <section className="mt-5">
-            <h2 className="text-2xl font-bold text-center mb-12">
-              Features That Make You Shine
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
-                <h3 className="text-lg font-semibold mb-3">Easy Editing</h3>
-                <p className="text-gray-600">
-                  Update your resume sections with live preview and instant formatting.
-                </p>
-              </div>
+          <div className="w-full md:w-1/2">
+            <img
+              src={CUSTOM_IMG}
+              alt="Preview of resume builder interface"
+              className="w-full rounded-2xl shadow-2xl object-cover"
+            />
+          </div>
+        </main>
 
-              <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
-                <h3 className="text-lg font-semibold mb-3">Beautiful Templates</h3>
-                <p className="text-gray-600">
-                  Choose from modern, professional templates that are easy to customize.
-                </p>
-              </div>
+        {/* Features */}
+        <section className="mt-24">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+            🔧 Smart Features to Showcase Your Talent
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <FeatureCard
+              icon="✍️"
+              title="User-Friendly Editing"
+              description="Easily update your resume sections with instant formatting and real-time preview."
+            />
+            <FeatureCard
+              icon="🎨"
+              title="Modern Templates"
+              description="Select from beautifully designed templates tailored to your needs."
+            />
+            <FeatureCard
+              icon="⚡"
+              title="Instant PDF Export"
+              description="Generate your polished PDF resume in a single click."
+            />
+            <FeatureCard
+              icon="📊"
+              title="Skill-Based Suggestions"
+              description="Receive intelligent recommendations aligned with your career goals."
+            />
+          </div>
+        </section>
 
-              <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
-                <h3 className="text-lg font-semibold mb-3">One-Click Export</h3>
-                <p className="text-gray-600">
-                  Download your resume instantly as a high-quality PDF with one click.
-                </p>
-              </div>
-            </div>
-          </section>
-        </div>
+        {/* Specializations */}
+        <section className="mt-28">
+          <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
+            🎯 Tailored For Every Profession
+          </h2>
+          <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
+            Whether you're a developer, designer, marketer, student, or manager — RESUMATCH adapts to your field with specific templates and insights.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            {["Developer", "Designer", "Marketer", "Student", "Manager", "Engineer"].map(role => (
+              <span
+                key={role}
+                className="bg-purple-100 text-purple-800 font-medium px-5 py-2 rounded-full text-sm hover:bg-purple-200 transition"
+              >
+                {role}
+              </span>
+            ))}
+          </div>
+        </section>
       </div>
 
       {/* Footer */}
-      <div className="text-sm bg-gray-50 text-secondary text-center p-5 mt-5">
-        Made with ❤️ ...Happy Coding
-      </div>
+      <footer className="bg-gray-100 text-center text-sm text-gray-500 py-6 mt-20 border-t">
+        Made with ❤️ by <span className="font-semibold text-gray-800">RESUMATCH Team</span> — Happy Coding!
+      </footer>
 
       {/* Auth Modal */}
       <Modal
-        isOpen={openAuthModal}
-        onClose={() => {
-          setOpenAuthModal(false);
-          setCurrentPage("login");
-        }}
+        isOpen={authModalOpen}
+        onClose={closeModal}
         hideHeader
       >
-        <div>
-          {currentPage === "login" && <Login setCurrentPage={setCurrentPage} />}
-          {currentPage === "signup" && <SignUp setCurrentPage={setCurrentPage} />}
-        </div>
+        {authPage === 'login' && <Login setCurrentPage={setAuthPage} />}
+        {authPage === 'signup' && <SignUp setCurrentPage={setAuthPage} />}
       </Modal>
-    </>
+    </div>
   );
 };
 
