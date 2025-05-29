@@ -1,6 +1,15 @@
 import React from 'react';
-import { IoColorPalette } from 'react-icons/io5';
-import { MdDescription } from 'react-icons/md';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  LuArrowLeft,
+  LuCircleAlert,
+  LuDownload,
+  LuPalette,
+  LuSave,
+  LuTrash2,
+} from "react-icons/lu";
+import toast from "react-hot-toast";
+
 
 const EditResume = () => {
   const { resumeId } = useParams();
@@ -89,7 +98,21 @@ const EditResume = () => {
   const[isLoading, setIsLoading]=useState(false);
 
   return (
-    <div>EditResume</div>
+    <DashboardLayout>
+      <div className="conatiner mx-auto">
+        <div className="flex items-center justify-between gap-5 bg-white rounded-ld border border-purple-100 py-3 px-4 mb-4">
+          <TitleInput
+          title={resumeData.title}
+          setTitle={(value)=>
+            setResumeData((prevState)=>({
+              ...prevState,
+              title: value,
+            }))
+          }
+          />
+        </div>
+      </div>
+    </DashboardLayout>
   )
 }
  
