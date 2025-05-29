@@ -44,18 +44,3 @@ const Input = ({ value, onChange, label, placeholder, type }) => {
 };
 
 export default Input;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -10,7 +10,7 @@ import ProfileInfoCard from '../components/Cards/ProfileInfoCard';
 
 const FeatureCard = ({ title, description, icon }) => (
   <div className="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 text-center">
-    <div className="text-5xl mb-4 animate-bounce">{icon}</div>
+    <div className="text-5xl mb-4 ">{icon}</div>
     <h3 className="text-xl font-bold text-indigo-700 mb-2">{title}</h3>
     <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
   </div>
@@ -112,6 +112,7 @@ const LandingPage = () => {
               title="Skill-Based Suggestions"
               description="Get real-time suggestions based on job descriptions and market trends."
             />
+            
           </div>
         </section>
 
@@ -126,7 +127,7 @@ const LandingPage = () => {
           <div className="flex flex-wrap justify-center gap-4">
             {[
               "Developer",
-              "Designer",
+              "Graphic Designer",
               "Marketer",
               "Student",
               "Manager",

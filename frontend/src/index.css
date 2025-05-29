@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-@import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
     --font-display: "Urbanist", sans-serif;
@@ -59,7 +61,7 @@
 }
 
 .btn-small{
-    @apply flex items-center gap-2 text-[13px] font-semibold text-white bg-linear-to-r from-purple-500/85 to-purple-700 px-5 py-1.5 rounded cursor-pointer;
+    @apply flex items-center gap-2 text-[13px] font-semibold text-white bg-gradient-to-r from-purple-500/85 to-purple-700 px-5 py-1.5 rounded cursor-pointer;
 }
 
 .btn-small-light{
@@ -68,4 +70,58 @@
 
 .form-input{
     @apply w-full text-sm text-black outline-none bg-white border border-slate-100 px-2.5 py-3 rounded-md mt-2 placeholder:text-gray-500 focus-within:border-purple-300;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+  }
+
+  .input {
+    @apply border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+}
+
+/* Custom styles for resume templates */
+.classic-template {
+  @apply max-w-[800px] mx-auto bg-white p-8 shadow-lg;
+}
+
+.modern-template {
+  @apply max-w-[800px] mx-auto bg-white p-8 shadow-lg;
+}
+
+.creative-template {
+  @apply max-w-[800px] mx-auto bg-white p-8 shadow-lg;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .classic-template,
+  .modern-template,
+  .creative-template {
+    @apply shadow-none p-0;
+  }
 }
